@@ -1,16 +1,11 @@
 from typing import Optional
 from fastapi import FastAPI
-from pydantic import BaseModel
-import random
+import random  # randomライブラリを追加
 
 app = FastAPI()
 
-# ✅ レスポンスのモデル定義
-class RootResponse(BaseModel):
-    message: str
-
-@app.get("/", response_model=RootResponse)
-async def root():
+@app.get("/")
+async def root() -> dict:
     return {"message": "Hello World"}
 
 
