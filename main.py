@@ -19,25 +19,26 @@ def omikuji():
     ]
     return {"result": random.choice(omikuji_list)}
 
-# 課題9-1: HTMLを返すエンドポイント
+# 課題9-1: HTMLページを返す
 @app.get("/index")
 def index():
     html_content = """
     <html>
         <head>
-            <title>FastAPI Index Page</title>
+            <title>My Homepage</title>
         </head>
         <body>
-            <h1>Hello! This is your homepage.</h1>
-            <p>課題9-1のHTML出力テストです。</p>
+            <h1>ようこそ！</h1>
+            <p>こんにいちは</p>
+            <p>最近暑すぎて死にそうです</p>
         </body>
     </html>
     """
     return HTMLResponse(content=html_content, status_code=200)
 
-# 課題9-2: POSTでクエリパラメータを受け取り、メッセージを返す
+# 課題9-2: クリスマスプレゼントのPOST
 @app.post("/present")
-async def present(present: str = Query(...)):
+async def give_present(present: str = Query(...)):
     return {
-        "response": f"サーバーです。メリークリスマス！{present}ありがとう。お返しはキャンディーです。"
+        "response": f"サンタです🎅 メリークリスマス！『{present}』ありがとう。お返しは🍬キャンディーです！"
     }
